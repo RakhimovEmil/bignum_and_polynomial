@@ -53,31 +53,31 @@ namespace mp {
     public:
         std::vector<uint32_t> value;
         //конструкторы
-        inline bignum(); // конструктор по умолчанию
-        inline explicit bignum(uint32_t); // конструктор от целого числа
-        inline explicit bignum(const std::string&); //конструктор от строки
+        bignum(); // конструктор по умолчанию
+        explicit bignum(uint32_t); // конструктор от целого числа
+        explicit bignum(const std::string&); //конструктор от строки
 
         //копирование
-        inline bignum(const bignum &copy);
-        inline bignum& operator= (const bignum& copy);
-        inline bignum& operator= (const uint32_t& copy);
+        bignum(const bignum &copy);
+        bignum& operator= (const bignum& copy);
+        bignum& operator= (const uint32_t& copy);
 
         //преобразование к целому числу
-        inline explicit operator uint32_t() const;
+        explicit operator uint32_t() const;
 
         //использование в условных выражениях
-        inline explicit operator bool() const;
+        explicit operator bool() const;
 
         //получение строкового представления
-        inline std::string to_string() const;
+        std::string to_string() const;
 
         //операции +, *, +=, *= bignum
-        inline bignum& operator+= (bignum const& right);
-        inline bignum& operator*= (bignum const& right);
+        bignum& operator+= (bignum const& right);
+        bignum& operator*= (bignum const& right);
 
         //операции +, * на число
-        inline bignum& operator+=(uint32_t);
-        inline bignum& operator*=(uint32_t);
+        bignum& operator+=(uint32_t);
+        bignum& operator*=(uint32_t);
     };
 
 }
@@ -97,7 +97,7 @@ inline std::ostringstream& operator<<(std::ostringstream &out, mp::bignum const&
 }
 
 // **** вспомогательные методы ***
-mp::bignum& mp::bignum::operator+=(uint32_t x) {
+inline mp::bignum& mp::bignum::operator+=(uint32_t x) {
     uint64_t rem = x;
     for (std::size_t i = 0; i < this->value.size(); i++) {
         uint64_t cur = this->value[i] + rem;
@@ -110,7 +110,7 @@ mp::bignum& mp::bignum::operator+=(uint32_t x) {
     return *this;
 }
 
-mp::bignum& mp::bignum::operator*=(uint32_t x) {
+inline mp::bignum& mp::bignum::operator*=(uint32_t x) {
     uint64_t rem = 0;
     uint64_t copy_x = x;
     for (std::size_t i = 0; i < this->value.size(); i++) {
@@ -144,15 +144,15 @@ inline mp::bignum operator*(uint32_t b, mp::bignum a) {
     return a;
 }
 // **** конструкторы ****
-mp::bignum::bignum() {
+inline mp::bignum::bignum() {
     value.push_back(0);
 }
 
-mp::bignum::bignum(uint32_t x) {
+inline mp::bignum::bignum(uint32_t x) {
     value.push_back(x);
 }
 
-mp::bignum::bignum(const std::string& s) {
+inline mp::bignum::bignum(const std::string& s) {
     mp::bignum cur;
     for (std::size_t i = 0; i < s.size(); i++) {
         if (s[i] == '+') {
@@ -165,23 +165,23 @@ mp::bignum::bignum(const std::string& s) {
 }
 
 // **** копирование ****
-mp::bignum::bignum(const bignum &copy) = default;
+inline mp::bignum::bignum(const bignum &copy) = default;
 
-mp::bignum& mp::bignum::operator=(const bignum &copy) = default;
+inline mp::bignum& mp::bignum::operator=(const bignum &copy) = default;
 
-mp::bignum& mp::bignum::operator=(const uint32_t &copy) {
+inline mp::bignum& mp::bignum::operator=(const uint32_t &copy) {
     this->value[0] = copy;
     return *this;
 }
 
 // **** преобразование к целому ****
-mp::bignum::operator uint32_t() const {
+inline mp::bignum::operator uint32_t() const {
     return value[0];
 }
 
 
 // **** получение строки ****
-std::string mp::bignum::to_string() const{
+inline std::string mp::bignum::to_string() const{
     std::string ans;
     mp::bignum copy = *this;
     while(copy.value.size() != 0) {
@@ -197,7 +197,7 @@ std::string mp::bignum::to_string() const{
 }
 
 // каст к bool
-mp::bignum::operator bool() const {
+inline mp::bignum::operator bool() const {
     for (std::size_t i = 0; i < this->value.size(); ++i) {
         if (this->value[i] != 0) {
             return true;
@@ -207,7 +207,7 @@ mp::bignum::operator bool() const {
 }
 
 // +, *
-mp::bignum &mp::bignum::operator+=(mp::bignum const& right){
+inline mp::bignum &mp::bignum::operator+=(mp::bignum const& right){
     bignum right_ = right;
     int size = std::max(this->value.size(), right.value.size()) + 1;
     for (int i = 0; i < static_cast<int>(size - this->value.size()); i++) {
@@ -229,7 +229,7 @@ mp::bignum &mp::bignum::operator+=(mp::bignum const& right){
     return *this;
 }
 
-mp::bignum& mp::bignum::operator*=(mp::bignum const& right) {
+inline mp::bignum& mp::bignum::operator*=(mp::bignum const& right) {
     std::vector<uint32_t> res(this->value.size() + right.value.size());
     for (std::size_t i = 0; i < this->value.size(); i++) {
         uint64_t rem = 0;
