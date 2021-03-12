@@ -23,6 +23,6 @@ representation to_string
 # mp::polynomial
 
 Implements polynomial abstraction
- $$P(x) = a_n x^n + a_{n-1} x^{n-1} + … a_0 $$
+ `P(x) = a_n x^n + a_{n-1} x^{n-1} + … a_0`
  
 
