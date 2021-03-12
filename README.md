@@ -24,6 +24,6 @@ representation to_string
 
 Implements polynomial abstraction
 
-![equation](https://latex.codecogs.com/png.latex?P%28x%29%20%3D%20a_n%20x%5En%20&plus;%20a_%7Bn-1%7D%20x%5E%7Bn-1%7D%20&plus;%20...%20&plus;%20a_0)
+![equation](https://latex.codecogs.com/png.latex?%5Cbg_white%20P%28x%29%20%3D%20a_n%20x%5En%20&plus;%20a_%7Bn-1%7D%20x%5E%7Bn-1%7D%20&plus;%20...%20&plus;%20a_0)
  
 
