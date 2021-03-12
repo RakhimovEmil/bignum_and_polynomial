@@ -23,13 +23,14 @@ representation to_string
 # mp::polynomial
 
 Implements polynomial abstraction
+
 ![equation](https://latex.codecogs.com/png.latex?%5Cbg_white%20P%28x%29%20%3D%20a_n%20x%5En%20&plus;%20a_%7Bn-1%7D%20x%5E%7Bn-1%7D%20&plus;%20...%20&plus;%20a_0)
  
 The class has the following list of 
 operations:
 
  * explicit constructor from the format string:
- 5*x^3+2*x^1+6*x^0 (no whitespace characters,
+ `5*x^3+2*x^1+6*x^0` (no whitespace characters,
  the degree is always specified, the coefficient may be absent)
  * "at" functions (constant and non-constant)
  for accessing the coefficient of a polynomial by index
