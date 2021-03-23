@@ -9,5 +9,3 @@ smoke_test_2: polynomial_test.cpp bignum.hpp
 smoke: smoke_test_1 smoke_test_2
 	./smoke_test
 	./polynomial_test
-
-all: smoke
