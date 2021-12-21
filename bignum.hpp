@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <algorithm>
 
 namespace mp {
     class bignum {
